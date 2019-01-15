@@ -13,7 +13,9 @@ module.exports = {
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'plugin:vue/essential', 
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
+    'standard',
+    'smart-tabs'
+    //tab을 해결하기위한 방법
   ],
   // required to lint *.vue files
   plugins: [

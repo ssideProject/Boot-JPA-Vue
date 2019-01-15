@@ -4,17 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import demo.bowling.domain.BowlScore;
+import demo.bowling.service.BowlScoreService;
 
 @RestController
 @RequestMapping("api/home")
 public class BowlRestController {
+	
+	@Autowired
+	BowlScoreService bowlScoreService;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	Page<BowlScore> getBowlScore (@PageableDefault Pageable pageable){
+		Page<BowlScore> BowlScores = bowlScoreService.findAll(pageable);
+		return BowlScores;
+	}
 	
 	/*@Autowired
 	CustomerService customerService;

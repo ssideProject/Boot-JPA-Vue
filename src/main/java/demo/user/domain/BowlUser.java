@@ -1,5 +1,6 @@
 package demo.user.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,28 +8,43 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 // 테이블 만들기 사용자와 스코어 두개
 @Entity
-@Table(name="BowlUser")
+@Table(name="bowluser")
 @AllArgsConstructor
 @NoArgsConstructor
-public class BowlUser {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class BowlUser implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@Column(name="user_id")
 	private String userId;
-	@Column(nullable = false)
+	
+	@Column(name="phone")
 	private String phone;
-	@Column(nullable = false)
+	
+	@Column(name="name")
 	private String name;
-	@Column(nullable = false)
+	
+	@Column(name="passwd")
 	private String passwd;
-	@Column(nullable = false)
+	
+	@Column(name="average")
 	private Integer average;
-	@Column(nullable = false)
+	
+	@Column(name="rcnt_match")
 	private Date rcntMatch;
-	@Column(nullable = false)
+	
+	@Column(name="reg_date")
 	private Date regDate;
 	
 	

@@ -1,29 +1,53 @@
 package demo.bowling.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import demo.user.domain.BowlUser;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="BowlScore")
+@Table(name="bowlscore")
 @AllArgsConstructor
 @NoArgsConstructor
-public class BowlScore {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class BowlScore implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	@Column(nullable = false)
-	private String userId;
-	@Column(nullable = false)
+	
+	@ManyToOne(targetEntity=BowlUser.class, cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+	@MapsId("userId")
+	private BowlUser bowluser;
+	
+	@Column(name="score")
 	private Integer score;
-	@Column(nullable = false)
+	
+	@Column(name="match_date")
 	private Date matchDate;
-	@Column(nullable = false)
+	
+	@Column(name="reg_date")
 	private Date regDate;
 	
 	public Integer getId() {
@@ -31,12 +55,6 @@ public class BowlScore {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	public Integer getScore() {
 		return score;
@@ -55,6 +73,12 @@ public class BowlScore {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	public BowlUser getBowluser() {
+		return bowluser;
+	}
+	public void setBowluser(BowlUser bowluser) {
+		this.bowluser = bowluser;
 	}
 	
 

@@ -1,13 +1,20 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <line></line>
     <router-view/>
   </div>
 </template>
 
 <script>
+import line from './components/Timeline'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    line
+  }
+
 }
 </script>
 
