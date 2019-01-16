@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -47,7 +49,18 @@ public class BowlUser implements Serializable{
 	@Column(name="reg_date")
 	private Date regDate;
 	
+	@Enumerated(EnumType.STRING)
+	private RoleName roleName;
 	
+	
+	
+	
+	public RoleName getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(RoleName roleName) {
+		this.roleName = roleName;
+	}
 	public String getUserId() {
 		return userId;
 	}

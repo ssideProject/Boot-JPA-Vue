@@ -1,7 +1,5 @@
 package demo.bowling.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,7 @@ import demo.bowling.domain.BowlScore;
 import demo.bowling.repository.BowlScoreRepository;
 
 @Service
-@Transactional
+@Transactional // 메소드가 호출 될때 트랜잭션 관리가 되도록 사용한다.
 public class BowlScoreService {
 	
 	@Autowired

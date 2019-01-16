@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <line></line>
+    <img src="./assets/bowling-logo.png">
     <router-view/>
   </div>
 </template>
 
 <script>
-import line from './components/Timeline'
-
+import Timeline from './components/Timeline.vue'
 export default {
   name: 'App',
   components: {
-    line
-  }
+    Timeline,
+  },
+  props: ['scores']
 
 }
 </script>

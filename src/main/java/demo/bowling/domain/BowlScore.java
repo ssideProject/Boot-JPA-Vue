@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name="bowlscore")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class BowlScore implements Serializable{
 	/**
 	 * 
@@ -36,7 +36,8 @@ public class BowlScore implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToOne(targetEntity=BowlUser.class, cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	// fetch=FetchType.LAZY를 넣게 되면 @jsonIgnoreProperties를 넣어줘야한다.
+	@ManyToOne(targetEntity=BowlUser.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
 	@MapsId("userId")
 	private BowlUser bowluser;
